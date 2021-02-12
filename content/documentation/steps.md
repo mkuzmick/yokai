@@ -40,36 +40,6 @@
 ### AIRTABLE
 
 
-`npm i gatsby-source-airtable` 
-then add to `gatsby-config.js`
-```
-{
-      resolve: "gatsby-source-airtable",
-      options: {
-        apiKey: process.env.AIRTABLE_API_KEY,
-        tables: [
-          {
-            baseId: process.env.AIRTABLE_BASE_ID,
-            tableName: "Pokémon",
-          },
-        ]
-      }
-    },
-```
-and also after `npm i dotenv`
-put this at top of config
-```
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
-})
-```
-and create `.env.development` with 
-```
-AIRTABLE_API_KEY=
-AIRTABLE_BASE_ID=
-AIRTABLE_TABLE_NAME={OPTIONAL}
-```
-
 
 
 
@@ -82,20 +52,17 @@ AIRTABLE_TABLE_NAME={OPTIONAL}
     },
   },
   ```
-- once you do this, you SHOULD be able to see all of your md or mdx files using the GraphiQL tool at [http://localhost:8000/\_\_\_graphql](http://localhost:8000/___graphql). If you are doing this for the first time, it pays to poke around a bit at this stage, creating some queries that help you try out various options for `allMarkdownRemark` and/or `allMdx` queries.
-- one quick note: if you have copied in any MDX files that are importing from packages you haven't yet installed, you'll need to install them. For today's project
+
+
   ```
   npm i theme-ui react-compare-image
   ```
-
-#### ADD STATIC FOLDER
-
-In general, we will use GraphQL to grab gatsby-processed content from our content folder, but from time to time we may need to use static assets (an initial use case we encountered involved `react-compare-image`). Let's prefix all of the folders we put in static with an `_` so that we don't run into naming collisions.
 
 ```
 mkdir static static/_images
 curl -o static/_images/gatsby.jpg "https://i.guim.co.uk/img/media/cc5ff87a032ce6e4144e63a2a1cbe476dbc7cd5a/273_0_3253_1952/master/3253.jpg?width=620&quality=45&auto=format&fit=max&dpr=2&s=d8da5fd430d3983dc50543a44b3979d4"
 ```
+
 
 ### ADD MDX AND MD FILES AS PAGES (POSTPONED)
 
@@ -487,57 +454,40 @@ pre: {
   }
   ```
 
-### AIRTABLE (POSTPONED)
+### AIRTABLE 
 
-loosely following [this tutorial](https://dev.to/sethu/how-to-build-a-website-using-gatsby-airtable-in-30-mins-42gm) but some of the syntax has changed.
 
-```
-npm i gatsby-source-airtable dotenv
-```
-
-then create a `.env` with the relevant stuff
-
-```
-touch .env.development
-```
-
-or if there's something from yesterday
-
-```
-cp ../mk-gatsby-20210121/.env.development .env.development
-```
-
-```
-clip /Users/mk/Development/mk-gatsby-20210129/.env.development
-```
-
-then paste that in.
-
-then in `gatsby-config.js` add the [gatsby-source-airtable](https://www.gatsbyjs.com/plugins/gatsby-source-airtable/) plugin
-
+`npm i gatsby-source-airtable` 
+then add to `gatsby-config.js`
 ```
 {
-  resolve: "gatsby-source-airtable",
-  options: {
-    apiKey: process.env.AIRTABLE_API_KEY,
-    tables: [
-      {
-        baseId: process.env.AIRTABLE_BASE_ID,
-        tableName: "Pokémon",
-      },
-    ]
-  }
-},
-
+      resolve: "gatsby-source-airtable",
+      options: {
+        apiKey: process.env.AIRTABLE_API_KEY,
+        tables: [
+          {
+            baseId: process.env.AIRTABLE_BASE_ID,
+            tableName: "Pokémon",
+          },
+        ]
+      }
+    },
 ```
-
-and use `dotenv` to bring in environment variables if desired (note: if hosting on netlify you'll have to enter them there too.)
-
+and also after `npm i dotenv`
+put this at top of config
 ```
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 ```
+and create `.env.development` with 
+```
+AIRTABLE_API_KEY=
+AIRTABLE_BASE_ID=
+AIRTABLE_TABLE_NAME={OPTIONAL}
+```
+
+
 
 and if doing pokemon, here is the pokemon index.
 
