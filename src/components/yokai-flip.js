@@ -61,6 +61,13 @@ const Back = (props)=>{
       }}
     >
     {props.children}
+    <img
+      src={props.image}
+      style={{
+        borderRadius:"10px",
+        width:"500px"
+      }}
+    />
     </div>
   )
 }
@@ -96,14 +103,14 @@ const Flip = (props)=>{
     <Card>
     <Inner>
       {/* <Overlay option="sparkle"/> */}
-      <Front image={props.image}
+      <Front image={props.front}
         />
-      <Back>
-        <h1
+      <Back image={props.back}>
+        {/* <h1
         style={{
           color:"white",
         }}
-        >Text</h1>
+        >Text</h1> */}
       </Back>
     </Inner>
     </Card>

@@ -1,22 +1,85 @@
-import React from "react"
-import { Link } from "gatsby"
+/** @jsx jsx */
+import { jsx } from 'theme-ui'
+import { graphql } from "gatsby"
 
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+export default ({data}) => {
+    const allAirtableData = data.allAirtable.edges;
+    return (
+        <div
+          sx={{padding: "4em"}}
+        >
+            {/* <pre>
+                {JSON.stringify(allAirtableData, null, 4)}
+            </pre> */}
+            {
+                allAirtableData.map(({node}) => (
+                    <div
+                      sx={{width: "100%", textAlign: "center"}}
+                    >
+                        <a href={`/yokai/${node.recordId}`}
+                          sx={{
+                            // color: "rgba(0,0,30,.9"
+                          }}
+                        ><h1
+                          sx={{
+                            fontFamily: "Avenir Next, sans-serif",
+                            fontSize: "4em",
+                            color: "rgba(0,0,30,.9)"
+                          }}
+                        >{node.data.Name}</h1></a>
+                    </div>
+                ))
+            }
+        </div>
+    )
+}
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
-  </Layout>
-)
-
-export default IndexPage
+export const query = graphql`
+    query {
+        allAirtable {
+          edges {
+            node {
+              id
+              recordId
+              data {
+                Description
+                mainFeature
+                Creator
+                Link_to_Project
+                secondFeature
+                Name
+                weight
+                type
+                mainAttack
+                region
+                specialAttack
+                height
+                backgroundColor
+                foregroundColor
+                canvaCardLink
+                canvaCardBack {
+                  id
+                  thumbnails {
+                    large {
+                      url
+                      width
+                      height
+                    }
+                  }
+                }
+                canvaCardFront {
+                  id
+                  thumbnails {
+                    large {
+                      url
+                      width
+                      height
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+`
