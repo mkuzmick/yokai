@@ -32,6 +32,11 @@ export default ({ data }) => {
             front={ data.airtable.data.canvaCardFront ? data.airtable.data.canvaCardFront[0].thumbnails.large.url : data.airtable.data.cleanImageJPG ? data.airtable.data.cleanImageJPG[0].thumbnails.full.url : "/_images/gatsby.jpg"} 
             back= { data.airtable.data.canvaCardBack ? data.airtable.data.canvaCardBack[0].thumbnails.large.url : data.airtable.data.cleanImageJPG ? data.airtable.data.cleanImageJPG[0].thumbnails.full.url : "/_images/gatsby.jpg"} 
         />
+        <div
+            sx={{
+                height: "300px"
+            }}
+        ></div>
         <pre>{JSON.stringify(data, null, 4)}</pre>
     </div>
     )
