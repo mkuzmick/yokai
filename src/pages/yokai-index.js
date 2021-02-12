@@ -23,8 +23,10 @@ export default ({data}) => {
                         ><h1
                           sx={{
                             fontFamily: "Avenir Next, sans-serif",
-                            fontSize: "4em",
-                            color: "rgba(0,0,30,.9)"
+                            fontSize: "3em",
+                            fontWeight: "900",
+                            color: "rgba(0,0,30,.9)",
+                            textDecoration: "none"
                           }}
                         >{node.data.Name}</h1></a>
                     </div>
