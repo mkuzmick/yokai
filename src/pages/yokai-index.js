@@ -1,25 +1,35 @@
-import React from "react"
+/** @jsx jsx */
+import { jsx } from 'theme-ui'
 import { graphql } from "gatsby"
 
 export default ({data}) => {
     const allAirtableData = data.allAirtable.edges;
     return (
-        <div>
+        <div
+          sx={{padding: "4em"}}
+        >
             {/* <pre>
                 {JSON.stringify(allAirtableData, null, 4)}
             </pre> */}
             {
                 allAirtableData.map(({node}) => (
-                    <div>
-                        <h1>{node.data.Name}</h1>
-                        { node.data.canvaCardFront ? "will have a card" : "no card yet"}   
-                        <a href={`/yokai/${node.recordId}`}>Click Here</a>
+                    <div
+                      sx={{width: "100%", textAlign: "center"}}
+                    >
+                        <a href={`/yokai/${node.recordId}`}
+                          sx={{
+                            // color: "rgba(0,0,30,.9"
+                          }}
+                        ><h1
+                          sx={{
+                            fontFamily: "Avenir Next, sans-serif",
+                            fontSize: "4em",
+                            color: "rgba(0,0,30,.9)"
+                          }}
+                        >{node.data.Name}</h1></a>
                     </div>
                 ))
             }
-            <pre>
-                {JSON.stringify(allAirtableData, null, 4)}
-            </pre>
         </div>
     )
 }
@@ -30,6 +40,7 @@ export const query = graphql`
           edges {
             node {
               id
+              recordId
               data {
                 Description
                 mainFeature

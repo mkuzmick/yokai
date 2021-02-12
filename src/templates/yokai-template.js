@@ -1,13 +1,36 @@
-import React from 'react'
-import { graphql } from 'gatsby'
+/** @jsx jsx */
+import { jsx } from 'theme-ui'
+import YokaiFlip from "../components/yokai-flip.js"
+
+
 
 export default ({ data }) => {
 
     return (
-    <div>
+    <div
+      sx={{
+        width: "80%",
+        margin: "auto",
+        padding: "3em",
+      }}
+    >
+      <div
+      sx={{
+        width: "100%",
+        textAlign: "center"
+      }}
+      >
+        <h1
+          sx={{
+            fontFamily: "Avenir Next, sans-serif",
+            fontWeight: "900",
+            fontSize: "4em"
+          }}
+        >{data.airtable.data.Name}</h1>
+      </div>
+        
+        <YokaiFlip image= { data.airtable.data.canvaCardFront ? data.airtable.data.canvaCardFront[0].thumbnails.large.url : data.airtable.data.cleanImageJPG ? data.airtable.data.cleanImageJPG[0].thumbnails.full.url : "/_images/gatsby.jpg"} />
         <pre>{JSON.stringify(data, null, 4)}</pre>
-        <h1>{data.airtable.data.Name}</h1>
-        <img src={ data.airtable.data.canvaCardFront ? data.airtable.data.canvaCardFront[0].thumbnails.large.url : "/static/_images/gatsby.jpg"}  />
     </div>
     )
 }
@@ -51,6 +74,13 @@ query GetRecord($recordId: String!){
                 url
                 width
                 height
+              }
+            }
+          }
+          cleanImageJPG {
+            thumbnails {
+              full {
+                url
               }
             }
           }
