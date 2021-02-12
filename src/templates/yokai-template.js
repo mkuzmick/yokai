@@ -11,7 +11,7 @@ export default ({ data }) => {
       sx={{
         width: "80%",
         margin: "auto",
-        padding: "3em",
+        padding: "2em",
       }}
     >
       <div
