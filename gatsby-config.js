@@ -17,6 +17,13 @@ module.exports = {
         path: `${__dirname}/content/images`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `documentation`,
+        path: `${__dirname}/content/documentation`,
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-remark-images`,
@@ -45,7 +52,7 @@ module.exports = {
         tables: [
           {
             baseId: process.env.AIRTABLE_BASE_ID,
-            tableName: "Pokémon",
+            tableName: "Yokai",
           },
         ]
       }
